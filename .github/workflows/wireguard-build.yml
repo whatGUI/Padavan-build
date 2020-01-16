@@ -30,11 +30,10 @@ jobs:
         cd /tmp/
         git clone https://github.com/WireGuard/wireguard-tools.git
         git clone git://git.netfilter.org/libmnl
-        cd libmnl/
+        cd /tmp/libmnl/
         ./autogen.sh --disable-shared --host=mipsel-linux-uclibc
         make
-        cd ..
-        cd wireguard-tools/src/tools/
+        cd /tmp/wireguard-tools/src/tools/
         env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs make        
         file wg
     - name: 编译wireguard-go      
