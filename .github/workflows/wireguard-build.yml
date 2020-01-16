@@ -35,9 +35,8 @@ jobs:
         ./autogen.sh --disable-shared --host=mipsel-linux-uclibc
         ./configure
         make
-        cd /tmp/wireguard-tools/src/tools/
-        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs 
-        make        
+        cd /tmp/wireguard-tools/src/
+        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs make        
         file wg
     - name: 编译wireguard-go      
       run: |
