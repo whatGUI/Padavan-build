@@ -24,8 +24,7 @@ jobs:
       env:
         DEBIAN_FRONTEND: noninteractive
       run: |
-        #sudo apt-get update
-        echo 'test'
+        sudo apt-get update        
     - name: 编译wg
       run: |
         cd /tmp/
@@ -36,16 +35,14 @@ jobs:
         make
         cd ..
         cd wireguard-tools/src/tools/
-        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs
-        make
+        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs make        
         file wg
     - name: 编译wireguard-go      
       run: |
         go get github.com/WireGuard/wireguard-go
         cd $GOPATH/src/github.com/WireGuard/wireguard-go
         rm donotuseon_linux.go
-        env GOOS=linux GOARCH=mipsle 
-        go build
+        env GOOS=linux GOARCH=mipsle go build        
         file wireguard-go        
     - name : 上传wg
       uses: actions/upload-artifact@master
