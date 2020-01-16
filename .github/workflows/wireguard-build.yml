@@ -1,0 +1,61 @@
+name: Build wireguard-go for Padavan
+
+on: 
+  release:
+    types: [published]
+  push:
+    tags:
+    - 'v*'
+    branches: 
+      - master
+  schedule:
+    - cron: 0 8 1 * *
+  watch:
+    types: [started]
+
+jobs:
+  build:
+    runs-on: ubuntu-18.04
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: 初始化
+      env:
+        DEBIAN_FRONTEND: noninteractive
+      run: |
+        #sudo apt-get update
+        echo 'test'
+    - name: 编译wg
+      run: |
+        cd /tmp/
+        git clone https://github.com/WireGuard/wireguard-tools.git
+        git clone git://git.netfilter.org/libmnl
+        cd libmnl/
+        ./autogen.sh --disable-shared --host=mipsel-linux-uclibc
+        make
+        cd ..
+        cd wireguard-tools/src/tools/
+        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs
+        make
+        file wg
+    - name: 编译wireguard-go      
+      run: |
+        go get github.com/WireGuard/wireguard-go
+        cd $GOPATH/src/github.com/WireGuard/wireguard-go
+        rm donotuseon_linux.go
+        env GOOS=linux GOARCH=mipsle 
+        go build
+        file wireguard-go        
+    - name : 上传wg
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: wg
+        path: /tmp/wireguard-tools/src/tools
+    - name : 上传wireguard-go
+      uses: actions/upload-artifact@master
+      if: always()
+      with:
+        name: wireguard-go
+        path: $GOPATH/src/github.com/WireGuard/wireguard-go
