@@ -25,7 +25,7 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update   
-        sudo apt-get -y install cmake git libmnl   
+        sudo apt-get -y install cmake git libmnl-dev   
     - name: 编译wg
       run: |
         cd /tmp/
@@ -35,7 +35,8 @@ jobs:
         #./autogen.sh --disable-shared --host=mipsel-linux-uclibc
         #make
         cd /tmp/wireguard-tools/src/tools/
-        env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs make        
+        #env CFLAGS=-I/tmp/libmnl/include LDFLAGS=-L/tmp/libmnl/src/.libs 
+        make        
         file wg
     - name: 编译wireguard-go      
       run: |
