@@ -28,7 +28,7 @@ jobs:
         sudo apt-get -y install cmake git
         cd ~ 
         wget https://dl.google.com/go/go1.13.6.linux-amd64.tar.gz
-	      sudo tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
+        sudo tar -C /usr/local -xzf go1.13.6.linux-amd64.tar.gz
         echo 'export GOROOT=/usr/local/go' >> .bashrc
         echo 'export GOPATH=$HOME/go' >> .bashrc 
         echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> .bashrc
