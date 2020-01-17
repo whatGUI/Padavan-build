@@ -55,7 +55,7 @@ jobs:
         go get git.zx2c4.com/wireguard-go
         cd $HOME/go/src/git.zx2c4.com/wireguard-go
         env GOOS=linux GOARCH=mipsle go build        
-        file wireguard-go        
+        file wireguard-go
     - name : 上传wg
       uses: actions/upload-artifact@master
       with:
@@ -65,4 +65,4 @@ jobs:
       uses: actions/upload-artifact@master
       with:
         name: wireguard-go
-        path: ./
+        path: $HOME/go/bin/
