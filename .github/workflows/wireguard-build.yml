@@ -56,14 +56,10 @@ jobs:
         cd $HOME/go/src/git.zx2c4.com/wireguard-go
         env GOOS=linux GOARCH=mipsle go build        
         file wireguard-go
-        cd $HOME/go/bin
-    - name : 上传wg
+        cp -r wireguard-go /tmp/wireguard-tools/src/
+    - name : 上传
       uses: actions/upload-artifact@master
       with:
         name: wg
         path: /tmp/wireguard-tools/src/
-    - name : 上传wireguard-go
-      uses: actions/upload-artifact@master
-      with:
-        name: wireguard-go
-        path: ./
+   
