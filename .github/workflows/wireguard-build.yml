@@ -54,7 +54,6 @@ jobs:
       run: |
         go get git.zx2c4.com/wireguard-go
         cd $HOME/go/src/git.zx2c4.com/wireguard-go
-        rm donotuseon_linux.go
         env GOOS=linux GOARCH=mipsle go build        
         file wireguard-go        
     - name : 上传wg
