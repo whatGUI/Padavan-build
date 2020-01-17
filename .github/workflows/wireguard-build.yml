@@ -52,8 +52,8 @@ jobs:
         file wg
     - name: 编译wireguard-go      
       run: |
-        go get github.com/WireGuard/wireguard-go
-        cd /home/go/src/github.com/WireGuard/wireguard-go
+        go get git.zx2c4.com/wireguard-go
+        cd $HOME/go/src/git.zx2c4.com/wireguard-go
         rm donotuseon_linux.go
         env GOOS=linux GOARCH=mipsle go build        
         file wireguard-go        
@@ -68,4 +68,4 @@ jobs:
       if: always()
       with:
         name: wireguard-go
-        path: /home/go/src/github.com/WireGuard/wireguard-go
+        path: $HOME/go/src/git.zx2c4.com/wireguard-go
