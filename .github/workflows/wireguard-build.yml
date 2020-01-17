@@ -58,13 +58,11 @@ jobs:
         file wireguard-go        
     - name : 上传wg
       uses: actions/upload-artifact@master
-      if: always()
       with:
         name: wg
-        path: /tmp/wireguard-tools/src/tools
+        path: /tmp/wireguard-tools/src/
     - name : 上传wireguard-go
       uses: actions/upload-artifact@master
-      if: always()
       with:
         name: wireguard-go
-        path: $HOME/go/src/git.zx2c4.com/wireguard-go
+        path: $HOME/go/src/git.zx2c4.com/wireguard-go/
