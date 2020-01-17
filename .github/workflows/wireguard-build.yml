@@ -25,7 +25,11 @@ jobs:
         DEBIAN_FRONTEND: noninteractive
       run: |
         sudo apt-get update   
-        sudo apt-get -y install cmake git  
+        sudo apt-get -y install cmake git golang-go
+        cd ~ echo 'export GOROOT=/root/go' >> .bashrc echo 'export GOPATH=$HOME/go' >> .bashrc echo 'export PATH=$PATH:$GOROOT/bin:$GOPATH/bin' >> .bashrc
+        source $HOME/.bashrc
+        cd ~ mkdir go cd go mkdir bin mkdir src mkdir pkg
+
     - name: 编译wg
       run: |
         cd /tmp/
