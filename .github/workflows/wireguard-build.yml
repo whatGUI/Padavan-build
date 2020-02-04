@@ -3,11 +3,11 @@ name: Build wireguard-go for Padavan
 on: 
   release:
     types: [published]
-  push:
-    tags:
-    - 'v*'
-    branches: 
-      - master
+#  push:
+#    tags:
+#    - 'v*'
+#    branches: 
+#      - master
   watch:
     types: [started]
 
