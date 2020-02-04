@@ -1,4 +1,4 @@
-name: Build wireguard-go for Padavan(test)
+name: Test Build wireguard-go for Padavan
 
 on: 
   release:
@@ -23,9 +23,9 @@ jobs:
       run: |
         apt-get update   
         apt-get -y install cmake git
-        cd ~ 
-	      wget https://dl.google.com/go/go1.13.7.linux-amd64.tar.gz
-	      tar -C /usr/local -xzf go1.13.7.linux-amd64.tar.gz
+        cd ~
+        wget https://dl.google.com/go/go1.13.7.linux-amd64.tar.gz
+        tar -C /usr/local -xzf go1.13.7.linux-amd64.tar.gz
         export PATH=$PATH:/usr/local/go/bin
         mkdir go 
         cd go 
