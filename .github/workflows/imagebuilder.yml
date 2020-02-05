@@ -23,6 +23,7 @@ jobs:
         wget -O /tmp/imagebuilder.tar.xz $DOWNLOAD_URL
         sudo xz -d /tmp/imagebuilder.tar.xz
         sudo tar -xvf /tmp/imagebuilder.tar
+        sudo tar -C /tmp -xvf /tmp/imagebuilder.tar
         cd $(ls /tmp | grep 'openwrt-imagebuilder')
     - name: 打包固件
       run: |
