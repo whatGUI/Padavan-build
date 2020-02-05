@@ -1,0 +1,37 @@
+#修改DEVICE与DOWNLOAD_URL为支持的设备名和imagebuilder下载地址，就可以支持别的设备了
+name: OpenWrt image builder
+on: 
+  push:
+    branches: 
+      - master
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@master
+    - name: 初始化
+      env:
+        DEBIAN_FRONTEND: noninteractive
+        #可修改设备名和imagebuilder下载地址
+        DEVICE: psg1218a
+        DOWNLOAD_URL: https://downloads.openwrt.org/releases/19.07.1/targets/ramips/mt7620/openwrt-imagebuilder-19.07.1-ramips-mt7620.Linux-x86_64.tar.xz
+        
+      run: |
+        #sudo apt-get update
+        sudo apt-get install build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
+        wget -O /tmp/imagebuilder.tar.xz $DOWNLOAD_URL
+        sudo tar -C /tmp -xvzf /tmp/imagebuilder.tar.xz
+        cd $(ls /tmp | grep 'openwrt-imagebuilder')
+    - name: 打包固件
+      run: |
+        #在PACKAGES中添加需要的软件包
+        make image PROFILE="$DEVICE" PACKAGES="luci luci-i18n-base-zh-cn luci-i18n-firewall-zh-cn"
+        cp bin /tmp
+    - name : 上传固件
+      uses: actions/upload-artifact@master
+      with:
+        name: image
+        path: /tmp/bin
