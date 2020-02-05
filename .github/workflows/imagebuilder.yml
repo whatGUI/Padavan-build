@@ -23,12 +23,10 @@ jobs:
         wget -O /tmp/imagebuilder.tar.xz $DOWNLOAD_URL
         sudo xz -d /tmp/imagebuilder.tar.xz
         sudo tar -C /tmp -xvf /tmp/imagebuilder.tar
-        cd /tmp/$(ls /tmp | grep 'openwrt-imagebuilder')
-        pwd
     - name: 打包固件
       run: |
         #在PACKAGES中添加需要的软件包
-        pwd
+        cd /tmp/$(ls /tmp | grep 'openwrt-imagebuilder')
         make image PROFILE="$DEVICE" PACKAGES="luci luci-i18n-base-zh-cn luci-i18n-firewall-zh-cn ssmtp wireguard luci-app-wireguard luci-i18n-wireguard-zh-cn"
         cp bin /tmp
     - name : 上传固件
