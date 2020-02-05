@@ -1,8 +1,6 @@
 name: OpenWrt image builder
-on: 
-  release:
-    types: [published]
-  push:
+#on: 
+#  push:
 #    branches: 
 #      - master
 
