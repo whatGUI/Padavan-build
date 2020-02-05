@@ -1,8 +1,8 @@
 #修改DEVICE与DOWNLOAD_URL为支持的设备名和imagebuilder下载地址，就可以支持别的设备了
 name: OpenWrt image builder
-on: 
+on:
   push:
-    branches: 
+    branches:
       - master
 jobs:
   build:
@@ -10,8 +10,6 @@ jobs:
 
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@master
     - name: 初始化
       env:
         DEBIAN_FRONTEND: noninteractive
