@@ -1,8 +1,8 @@
 #修改DEVICE与DOWNLOAD_URL为支持的设备名和imagebuilder下载地址，就可以支持别的设备了
 name: OpenWrt image builder
-on:
+on: 
   push:
-    branches:
+    branches: 
       - master
 jobs:
   build:
@@ -21,7 +21,8 @@ jobs:
         #sudo apt-get update
         sudo apt-get install build-essential libncurses5-dev libncursesw5-dev zlib1g-dev gawk git gettext libssl-dev xsltproc wget unzip python
         wget -O /tmp/imagebuilder.tar.xz $DOWNLOAD_URL
-        sudo tar -C /tmp -xvzf /tmp/imagebuilder.tar.xz
+        sudo xz -d /tmp/imagebuilder.tar.xz
+        sudo tar -C /tmp -xvf /tmp/imagebuilder.tar
         cd $(ls /tmp | grep 'openwrt-imagebuilder')
     - name: 打包固件
       run: |
