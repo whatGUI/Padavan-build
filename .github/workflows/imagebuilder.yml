@@ -24,7 +24,7 @@ jobs:
         sudo xz -d /tmp/imagebuilder.tar.xz
         sudo tar -xvf /tmp/imagebuilder.tar
         sudo tar -C /tmp -xvf /tmp/imagebuilder.tar
-        cd $(ls /tmp | grep 'openwrt-imagebuilder')
+        cd /tmp/$(ls /tmp | grep 'openwrt-imagebuilder')
     - name: 打包固件
       run: |
         #在PACKAGES中添加需要的软件包
