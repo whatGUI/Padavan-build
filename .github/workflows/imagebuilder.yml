@@ -26,8 +26,12 @@ jobs:
     - name: 打包固件
       run: |
         #在PACKAGES中添加需要的软件包
+        pwd
         cd /tmp/$(ls /tmp | grep 'openwrt-imagebuilder')
+        ls
+        pwd
         make image PROFILE="$DEVICE" PACKAGES="luci luci-i18n-base-zh-cn luci-i18n-firewall-zh-cn ssmtp wireguard luci-app-wireguard luci-i18n-wireguard-zh-cn"
+        ls /tmp
         cp bin /tmp
     - name : 上传固件
       uses: actions/upload-artifact@master
