@@ -1,6 +1,6 @@
 name: OpenWrt image builder
 on: 
-#  push:
+  push:
 #    branches: 
 #      - master
 jobs:
